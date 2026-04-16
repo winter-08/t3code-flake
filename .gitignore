@@ -1,0 +1,10 @@
+result
+result-*
+.direnv/
+
+!scripts/
+!scripts/*
+!flake.nix
+!.github/
+!.github/workflows/
+!.github/workflows/update.yml
