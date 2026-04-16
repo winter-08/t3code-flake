@@ -1,0 +1,17 @@
+{
+  "version": "0.0.17",
+  "assets": {
+    "x86_64-linux": {
+      "name": "T3-Code-0.0.17-x86_64.AppImage",
+      "sha256": "b92fa8d67440dd1ee19fd05aa26addb06542f147293c51511b76b5a8656bb3cc"
+    },
+    "aarch64-darwin": {
+      "name": "T3-Code-0.0.17-arm64.zip",
+      "sha256": "98c38a8ce2819e934bf377d685b8208369442e778149a68151b39f19321a0f40"
+    },
+    "x86_64-darwin": {
+      "name": "T3-Code-0.0.17-x64.zip",
+      "sha256": "c0547904b47ffca099af97b2a6bbcf76cb4ce7354ee19d21704d0792122e3850"
+    }
+  }
+}

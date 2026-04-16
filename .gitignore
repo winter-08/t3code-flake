@@ -8,3 +8,4 @@ result-*
 !.github/
 !.github/workflows/
 !.github/workflows/update.yml
+!sources.json
