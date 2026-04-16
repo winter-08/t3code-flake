@@ -1,5 +1,5 @@
 {
-  description = "T3 Code - a fork of VS Code by Theo (pingdotgg)";
+  description = "T3 Code - desktop app by Theo (pingdotgg)";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";

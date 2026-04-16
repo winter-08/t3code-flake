@@ -1,7 +1,7 @@
 # t3code-flake
 
 Nix flake packaging [T3 Code](https://github.com/pingdotgg/t3code) (pingdotgg's
-VS Code fork) for Linux and macOS. Pinned versions and hashes live in
+desktop app) for Linux and macOS. Pinned versions and hashes live in
 [`sources.json`](./sources.json); a scheduled GitHub Action bumps them and
 pushes to `main` when upstream releases a new version.
 
@@ -16,14 +16,14 @@ pushes to `main` when upstream releases a new version.
 ## Run it without installing
 
 ```sh
-nix run github:<owner>/t3code-flake
+nix run github:winter-08/t3code-flake
 ```
 
 ## Add to a NixOS / home-manager / nix-darwin config
 
 ```nix
 {
-  inputs.t3code.url = "github:<owner>/t3code-flake";
+  inputs.t3code.url = "github:winter-08/t3code-flake";
 
   # in your system/home config:
   environment.systemPackages = [ inputs.t3code.packages.${pkgs.system}.default ];
