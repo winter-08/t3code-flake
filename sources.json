@@ -1,17 +1,17 @@
 {
-  "version": "0.0.20",
+  "version": "0.0.21",
   "assets": {
     "x86_64-linux": {
-      "name": "T3-Code-0.0.20-x86_64.AppImage",
-      "sha256": "82562717c500e6ce2bae9509baf9381e542dc8c8a46dc90892630886726e80ee"
+      "name": "T3-Code-0.0.21-x86_64.AppImage",
+      "sha256": "79009fb24a65f8924ec9a618ee88180a2d190ae58d45c129b1e58c9e24bf2c24"
     },
     "aarch64-darwin": {
-      "name": "T3-Code-0.0.20-arm64.zip",
-      "sha256": "b56bc0d3dadf48bbb7af129909f175db66ffba3ee0bf14fb965129bf210b813c"
+      "name": "T3-Code-0.0.21-arm64.zip",
+      "sha256": "599585cb26dda8479f7af96d09b174673f01960bed5452ba24060176e894c16d"
     },
     "x86_64-darwin": {
-      "name": "T3-Code-0.0.20-x64.zip",
-      "sha256": "d46ee9dab87d5bb3add4fcb3564d54006f515305fdfca1cf7fa898d35fb456d0"
+      "name": "T3-Code-0.0.21-x64.zip",
+      "sha256": "9581dc8b7c6dcd41162f91d4e80cf649acc9e3b2ec0ae6dcf50cf7b6d5449a2a"
     }
   }
 }
