@@ -61,7 +61,7 @@ missing_assets() {
 # A build can publish partial assets if one platform's job failed, so walk back
 # through recent releases and take the newest complete one.
 resolve_channel() {
-  local chan="$1" filter candidates page all page_json
+  local chan="$1" filter candidates page allfile page_json
   case "$chan" in
     stable)  filter='select(.prerelease | not)' ;;
     nightly) filter='select(.prerelease) | select(.tag_name | test("-nightly\\."))' ;;
@@ -69,15 +69,24 @@ resolve_channel() {
 
   # Nightlies land several times a day and far outnumber stable releases, so a
   # stable tag can sit many pages deep. Page until we have a few candidates.
-  all="[]"
+  # Accumulate via a temp file, not a jq argument: release JSON grows past the
+  # kernel's per-argument size limit ("Argument list too long"), and keep only
+  # the fields we use so the accumulator stays small.
+  allfile=$(mktemp)
+  echo '[]' >"$allfile"
   for page in 1 2 3 4 5; do
     page_json=$(api "repos/$REPO/releases?per_page=100&page=$page")
     [[ "$(jq 'length' <<<"$page_json")" -eq 0 ]] && break
-    all=$(jq -c --argjson acc "$all" "\$acc + [ .[] | select(.draft | not) | $filter ]" <<<"$page_json")
-    [[ "$(jq 'length' <<<"$all")" -ge 5 ]] && break
+    jq -c --slurpfile acc "$allfile" \
+      "\$acc[0] + [ .[] | select(.draft | not) | $filter
+        | {tag_name, published_at, assets: [.assets[] | {name, digest}]} ]" \
+      <<<"$page_json" >"$allfile.new"
+    mv "$allfile.new" "$allfile"
+    [[ "$(jq 'length' "$allfile")" -ge 5 ]] && break
   done
 
-  candidates=$(jq -c 'sort_by(.published_at) | reverse | .[]' <<<"$all")
+  candidates=$(jq -c 'sort_by(.published_at) | reverse | .[]' "$allfile")
+  rm -f "$allfile"
 
   if [[ -z "$candidates" ]]; then
     echo "error: no $chan releases found for $REPO" >&2
