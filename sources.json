@@ -1,36 +1,36 @@
 {
   "channels": {
     "stable": {
-      "version": "0.1.1",
+      "version": "0.1.2",
       "assets": {
         "x86_64-linux": {
-          "name": "T3-Code-0.1.1-x86_64.AppImage",
-          "sha256": "f8ab52fe10ef3cb872a083d038fd120dd1ec5b498fef568d04b28b7a72c60c37"
+          "name": "T3-Code-0.1.2-x86_64.AppImage",
+          "sha256": "cf01e2d167eff9d01c4c1004d31b2c0da9e2522cc94262e41644d1cb15dfdb5c"
         },
         "aarch64-darwin": {
-          "name": "T3-Code-0.1.1-arm64.zip",
-          "sha256": "a19b3f3cf17e1b69a3d2d8630fd965f1b63253ec078257199fde66e61567e293"
+          "name": "T3-Code-0.1.2-arm64.zip",
+          "sha256": "c99dbde726b168853c4409f32292b7381db2c83c1aca0ebdd1c506065eac990f"
         },
         "x86_64-darwin": {
-          "name": "T3-Code-0.1.1-x64.zip",
-          "sha256": "e9041a887ee7e37a839bc3dac5194c1c13ae7536fe531a3439f2952811122648"
+          "name": "T3-Code-0.1.2-x64.zip",
+          "sha256": "23580a26afadbe0a10bd3e79fde58c4d5c4df7e936eb7108755ff1719a8411ea"
         }
       }
     },
     "nightly": {
-      "version": "0.1.2-nightly.20261022.3512",
+      "version": "0.1.2-nightly.20261022.3541",
       "assets": {
         "x86_64-linux": {
-          "name": "T3-Code-0.1.2-nightly.20261022.3512-x86_64.AppImage",
-          "sha256": "cdda407bf1bdff08f6de5d939f451ea83b8bb927332b669fe00cda8b15b7eea3"
+          "name": "T3-Code-0.1.2-nightly.20261022.3541-x86_64.AppImage",
+          "sha256": "4f97a62a7f5d553a791e34bf07d243d791e3d45b5cba756f61e24c2eed68c7b9"
         },
         "aarch64-darwin": {
-          "name": "T3-Code-0.1.2-nightly.20261022.3512-arm64.zip",
-          "sha256": "940788b022e5e7aed8be4034a92a8165b12000b2441893828422330311e2c5e1"
+          "name": "T3-Code-0.1.2-nightly.20261022.3541-arm64.zip",
+          "sha256": "f036d0cb258e68029b562c7ad0384614b20621e1242b2a60d065868c6031b0dd"
         },
         "x86_64-darwin": {
-          "name": "T3-Code-0.1.2-nightly.20261022.3512-x64.zip",
-          "sha256": "c7d24edff87bed27529b97b975a788a57f7bae1b8f2d1247d10b6a260937fc5e"
+          "name": "T3-Code-0.1.2-nightly.20261022.3541-x64.zip",
+          "sha256": "a859224e0caaca7f5eaf5694a16c6e32daf2bdece023126012422c7cd7ceed9a"
         }
       }
     }
