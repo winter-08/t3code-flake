@@ -2,6 +2,7 @@ result
 result-*
 .direnv/
 .claude/settings.local.json
+__pycache__/
 
 !scripts/
 !scripts/*
