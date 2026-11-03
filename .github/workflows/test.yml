@@ -1,0 +1,26 @@
+name: test updater
+
+on:
+  push:
+    paths:
+      - scripts/update.sh
+      - tests/**
+      - .github/workflows/test.yml
+  pull_request:
+    paths:
+      - scripts/update.sh
+      - tests/**
+      - .github/workflows/test.yml
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check Bash syntax
+        run: bash -n scripts/update.sh
+      - name: Test updater without network access
+        run: python3 -m unittest discover -s tests -v

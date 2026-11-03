@@ -67,8 +67,26 @@ exits 0 either way. Per channel it picks the newest release that has assets for
 all three supported systems, walking back past releases whose per-platform
 builds failed.
 
+Release-list requests retry up to three times with short backoff on errors,
+invalid responses, or empty pages. If a 100-release page remains empty, the
+updater retries that position using 10-release pages, preserving the original
+500-release search window. Persistent API errors still fail the update rather
+than being treated as an empty list.
+
 To pin an older version, edit `sources.json` by hand — the asset names and
 `sha256` digests are listed on the upstream release page.
+
+### Testing the updater
+
+```sh
+python3 -m unittest discover -s tests -v
+```
+
+The regression tests require Python 3, Bash, and `jq`. They run the full updater
+with mocked `gh`, `curl`, and backoff commands, so they do not access the network
+or modify the repository's `sources.json`.
+The same suite runs on pull requests and pushes that change the updater or its
+tests, in a separate read-only workflow.
 
 ## Auto-update workflow
 
