@@ -67,21 +67,33 @@ release_page() {
   return 1
 }
 
-# Asset name patterns per nix system, as a jq object keyed by system.
+# Candidate asset names per nix system, as a jq object of arrays keyed by
+# system, in order of preference. Since 0.1.10 the AppImage is published
+# under an unversioned per-channel name instead of the versioned one.
 patterns() {
-  jq -n --arg v "$1" '{
-    "x86_64-linux":   "T3-Code-\($v)-x86_64.AppImage",
-    "aarch64-darwin": "T3-Code-\($v)-arm64.zip",
-    "x86_64-darwin":  "T3-Code-\($v)-x64.zip"
+  jq -n --arg v "$1" --arg c "$2" '{
+    "x86_64-linux": [
+      "T3-Code-\($v)-x86_64.AppImage",
+      (if $c == "nightly" then "T3-Code-Nightly-x86_64.AppImage" else "T3-Code-x86_64.AppImage" end)
+    ],
+    "aarch64-darwin": [ "T3-Code-\($v)-arm64.zip" ],
+    "x86_64-darwin":  [ "T3-Code-\($v)-x64.zip" ]
   }'
 }
 
-missing_assets() {
-  local version="$1" release_json="$2"
-  jq -r --argjson want "$(patterns "$version")" '
+# Maps each system to the first candidate present in the release, or null.
+resolve_assets() {
+  local version="$1" chan="$2" release_json="$3"
+  jq -c --argjson want "$(patterns "$version" "$chan")" '
     [ .assets[].name ] as $have
-    | [ $want[] | select(. as $n | $have | index($n) | not) ]
-    | join(", ")' <<<"$release_json"
+    | $want | map_values(first(.[] | select(. as $n | $have | index($n))) // null)' <<<"$release_json"
+}
+
+missing_assets() {
+  local version="$1" chan="$2" release_json="$3"
+  jq -r --argjson want "$(patterns "$version" "$chan")" '
+    [ to_entries[] | select(.value == null) | $want[.key][0] ] | join(", ")' \
+    <<<"$(resolve_assets "$version" "$chan" "$release_json")"
 }
 
 # Prints "<version>\t<release json>" for the newest usable release on a channel.
@@ -140,7 +152,7 @@ resolve_channel() (
   while IFS= read -r candidate; do
     tag=$(jq -r '.tag_name' <<<"$candidate")
     version="${tag#v}"
-    missing=$(missing_assets "$version" "$candidate") || return 1
+    missing=$(missing_assets "$version" "$chan" "$candidate") || return 1
     if [[ -n "$missing" ]]; then
       echo "skipping $tag: missing assets: $missing" >&2
       continue
@@ -183,7 +195,7 @@ for chan in "${channels[@]}"; do
     jq --arg c "$chan" --arg s "$sys" --arg n "$name" --arg h "$sha" \
       '.channels[$c].assets[$s] = {name: $n, sha256: $h}' "$tmp" >"$tmp.new"
     mv "$tmp.new" "$tmp"
-  done < <(patterns "$version" | jq -r 'to_entries[] | "\(.key)\t\(.value)"')
+  done < <(resolve_assets "$version" "$chan" "$release_json" | jq -r 'to_entries[] | "\(.key)\t\(.value)"')
 
   mv "$tmp" "$SOURCES"
   updated+=("$chan $version")

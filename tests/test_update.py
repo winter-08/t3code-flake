@@ -289,6 +289,24 @@ class UpdateTests(unittest.TestCase):
         result = self.run_update("nightly")
         self.assert_failed(result, "no nightly release has assets for all supported systems")
 
+    def test_unversioned_appimage_names_are_accepted(self):
+        stable = release("1.1.0", published="2027-01-01T00:00:00Z")
+        stable["assets"][0]["name"] = "T3-Code-x86_64.AppImage"
+        nightly = release("1.1.0-nightly.0", prerelease=True, published="2027-01-01T00:00:00Z")
+        nightly["assets"][0]["name"] = "T3-Code-Nightly-x86_64.AppImage"
+        # The other channel's name must not satisfy this channel.
+        crossed = release("1.2.0-nightly.0", prerelease=True, published="2027-02-01T00:00:00Z")
+        crossed["assets"][0]["name"] = "T3-Code-x86_64.AppImage"
+        self.page(100, 1, response(stable_releases() + nightlies() + [stable, nightly, crossed]))
+        result = self.run_update()
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(result.stdout, "stable 1.1.0\nnightly 1.1.0-nightly.0\n")
+        self.assertIn("skipping v1.2.0-nightly.0: missing assets: T3-Code-1.2.0-nightly.0-x86_64.AppImage", result.stderr)
+        channels = self.sources()["channels"]
+        self.assertEqual(channels["stable"]["assets"]["x86_64-linux"]["name"], "T3-Code-x86_64.AppImage")
+        self.assertEqual(channels["nightly"]["assets"]["x86_64-linux"]["name"], "T3-Code-Nightly-x86_64.AppImage")
+        self.assertEqual(channels["nightly"]["assets"]["aarch64-darwin"]["name"], "T3-Code-1.1.0-nightly.0-arm64.zip")
+
     def test_up_to_date_remains_silent(self):
         self.original["channels"]["nightly"]["version"] = "1.0.0-nightly.4"
         (self.root / "sources.json").write_text(json.dumps(self.original))
