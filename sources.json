@@ -18,19 +18,19 @@
       }
     },
     "nightly": {
-      "version": "0.1.11-nightly.20261119.4954",
+      "version": "0.1.11-nightly.20261120.4969",
       "assets": {
         "x86_64-linux": {
           "name": "T3-Code-Nightly-x86_64.AppImage",
-          "sha256": "3ed7651b489c98092787f58659e5b6da72becd9d7eea5d29083825abc5e947c9"
+          "sha256": "63e718a76079af4c33e5c50b579812b2cdf2020869fdbafccf2681279c9aa7f7"
         },
         "aarch64-darwin": {
-          "name": "T3-Code-0.1.11-nightly.20261119.4954-arm64.zip",
-          "sha256": "9b1f811fcf13a41e44b0167e944c43f40924de5e076e4b812ad502e2f59e10c2"
+          "name": "T3-Code-0.1.11-nightly.20261120.4969-arm64.zip",
+          "sha256": "df6dd5e904fa0ca53441e6c577dd744cbe34dfeca0d9548e53d043aa506e48fc"
         },
         "x86_64-darwin": {
-          "name": "T3-Code-0.1.11-nightly.20261119.4954-x64.zip",
-          "sha256": "ae1264d39b775bfb67a5fdff4b2891f80db198c9993f22205ad71de481c63442"
+          "name": "T3-Code-0.1.11-nightly.20261120.4969-x64.zip",
+          "sha256": "05e1c721bfa70576fa59042b3e07d288a6c23e66c5177a9cde7c5e7ff19e8ea8"
         }
       }
     }
