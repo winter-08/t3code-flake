@@ -1,36 +1,36 @@
 {
   "channels": {
     "stable": {
-      "version": "0.1.11",
+      "version": "0.1.12",
       "assets": {
         "x86_64-linux": {
           "name": "T3-Code-x86_64.AppImage",
-          "sha256": "8baa06a7bbaa3f729d69466fb211ed7006d6a6e4d800b9ecdacd831fd1686b14"
+          "sha256": "66b91551571df6d29b55cb590295edf411cff96c95a8feb3f41c3ca595d722e2"
         },
         "aarch64-darwin": {
-          "name": "T3-Code-0.1.11-arm64.zip",
-          "sha256": "2e92454031dbffac45f9dc5e43481ed3d29d891fae9fd580ceeeaf28efe5f230"
+          "name": "T3-Code-0.1.12-arm64.zip",
+          "sha256": "6ccc52e10d9d4067938db7cd535d50d8193864febfa1cfa6c8485bc3aa7dbfb7"
         },
         "x86_64-darwin": {
-          "name": "T3-Code-0.1.11-x64.zip",
-          "sha256": "8a09dd0b017e359d44a2a2c8102c7775c88ff7ae259996b2aa0ddead05547c07"
+          "name": "T3-Code-0.1.12-x64.zip",
+          "sha256": "d504b358a8d532d8ca0cb015a239d782beb617d45cdf2f65fafea823090de679"
         }
       }
     },
     "nightly": {
-      "version": "0.1.12-nightly.20261124.5209",
+      "version": "0.1.13-nightly.20261125.5245",
       "assets": {
         "x86_64-linux": {
           "name": "T3-Code-Nightly-x86_64.AppImage",
-          "sha256": "a9fdd672c733589adc370009c95da914b0aabb0e8ae352e1c57efa90d88fd0f2"
+          "sha256": "5d8a5a0027b943f929b0589677a75552945e430843c11f3552e15225b8111d48"
         },
         "aarch64-darwin": {
-          "name": "T3-Code-0.1.12-nightly.20261124.5209-arm64.zip",
-          "sha256": "d37e61c5181ae92e3abfa3ac983306798ae72f33ec7a5d82069728b673a2b9f4"
+          "name": "T3-Code-0.1.13-nightly.20261125.5245-arm64.zip",
+          "sha256": "f738c27a5cc280ccea67dff674f14191a235a6db357091ae10f3ecb2daa56932"
         },
         "x86_64-darwin": {
-          "name": "T3-Code-0.1.12-nightly.20261124.5209-x64.zip",
-          "sha256": "ab8063e2e9347df8832ed5027d6fc0a2e2612bf5df727ec0aa763b51c90a6900"
+          "name": "T3-Code-0.1.13-nightly.20261125.5245-x64.zip",
+          "sha256": "08154be1c30e9575174b17c61f5ae2cf76da7ac64187ea9b62f065ab6f02370d"
         }
       }
     }
